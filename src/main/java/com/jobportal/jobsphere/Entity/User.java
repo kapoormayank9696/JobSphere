@@ -1,5 +1,6 @@
 package com.jobportal.jobsphere.Entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -14,7 +15,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User {
     @Id
+    @Column(name="userId")
     private Long id;
 
+    @Column(name="full_name",nullable = false)
+    private String username;
+
+    @Column(name="email",nullable = false,unique = true)
+    private String email;
+
+    @Column(name="password",nullable = false)
+    private String password;
+
+    @Column(name="phone",nullable = false)
+    private String phone;
 }
 
