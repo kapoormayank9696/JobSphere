@@ -9,12 +9,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Role")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Roles {
     @Id
     @Column(name = "id")
@@ -23,8 +25,9 @@ public class Roles {
     @Column(name = "rolename", nullable = false,unique = true)
     private String name;
 
-    @Column(name = "descrpition",nullable = false)
+    @Column(name = "description",nullable = false)
     private String description;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at",nullable = false,updatable = false)
+    private LocalDateTime createdAt;
 }
