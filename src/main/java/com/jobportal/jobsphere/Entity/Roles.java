@@ -17,6 +17,14 @@ import java.math.BigInteger;
 @AllArgsConstructor
 public class Roles {
     @Id
-    @Column(name="roleId")
+    @Column(name = "id")
     private BigInteger id;
+
+    @Column(name = "rolename", nullable = false,unique = true)
+    private String name;
+
+    @Column(name = "descrpition",nullable = false)
+    private String description;
+
+    @Column(name = "created_at")
 }
