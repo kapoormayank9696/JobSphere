@@ -1,17 +1,19 @@
 package com.jobportal.jobsphere.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import lombok.*;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
+
 import java.time.Year;
 
 @Entity
 @Table(name = "Education")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -20,18 +22,19 @@ public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private BigInteger id;
+    private Long id;
 
-    @Column(name = "userId", nullable = false)
-    private BigInteger userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @Column(name = "institute_name", nullable = false)
+    @Column(name = "institute_name", nullable = false,length = 255)
     private String instituteName;
 
-    @Column(name = "degree", nullable = false)
+    @Column(name = "degree", nullable = false,length = 100)
     private String degree;
 
-    @Column(name = "field_of_study", nullable = false)
+    @Column(name = "field_of_study", nullable = false,length = 150)
     private String fieldOfStudy;
 
     @Column(name = "start_year", nullable = false)
@@ -41,5 +44,7 @@ public class Education {
     private Year endYear;
 
     @Column(name = "percentage", precision = 5, scale = 2)
+    @DecimalMin(value = "0.0", message = "Percentage cannot be less than 0")
+    @DecimalMax(value = "100.0", message = "Percentage cannot be greater than 100")
     private BigDecimal percentage;
 }
