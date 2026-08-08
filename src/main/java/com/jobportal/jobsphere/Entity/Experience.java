@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigInteger;
+
 @Entity
 @Table(name = "Experience")
 @Data
@@ -16,4 +18,7 @@ public class Experience {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "userId",nullable = false)
+    private BigInteger userId;
 }
