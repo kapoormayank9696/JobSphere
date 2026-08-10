@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cache;
 
 import java.math.BigInteger;
 
@@ -15,6 +14,7 @@ import java.math.BigInteger;
 @AllArgsConstructor
 
 public class User_Roles {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id",nullable = false)
