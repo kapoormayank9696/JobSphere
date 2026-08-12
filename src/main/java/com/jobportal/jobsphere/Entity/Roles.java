@@ -9,7 +9,7 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="Role")
+@Table(name="roles")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +20,7 @@ public class Roles {
     @Column(name = "id")
     private BigInteger id;
 
-    @Column(name = "rolename", nullable = false,unique = true)
+    @Column(name = "role_name", nullable = false,unique = true)
     private String name;
 
     @Column(name = "description",nullable = false)

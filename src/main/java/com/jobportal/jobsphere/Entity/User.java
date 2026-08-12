@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 import java.math.BigInteger;
 
 @Entity
-@Table(name="User")
+@Table(name="user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="userId")

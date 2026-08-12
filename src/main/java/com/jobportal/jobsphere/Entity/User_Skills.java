@@ -9,7 +9,7 @@ import java.math.BigInteger;
 import java.time.Year;
 
 @Entity
-@Table(name = "skills")
+@Table(name = "user_skills")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

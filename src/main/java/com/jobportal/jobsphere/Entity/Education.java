@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.time.Year;
 
 @Entity
-@Table(name = "Education")
+@Table(name = "education")
 @Data
 @Getter
 @Setter
