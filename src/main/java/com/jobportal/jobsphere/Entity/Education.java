@@ -7,13 +7,9 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-import java.time.Year;
-
 @Entity
 @Table(name = "education")
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -38,10 +34,10 @@ public class Education {
     private String fieldOfStudy;
 
     @Column(name = "start_year", nullable = false)
-    private Year startYear;
+    private Integer startYear;
 
     @Column(name = "end_year")
-    private Year endYear;
+    private Integer endYear;
 
     @Column(name = "percentage", precision = 5, scale = 2)
     @DecimalMin(value = "0.0", message = "Percentage cannot be less than 0")

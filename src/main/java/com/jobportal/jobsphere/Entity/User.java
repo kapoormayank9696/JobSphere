@@ -5,10 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
-
 @Entity
-@Table(name="user")
+@Table(name="users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,11 +14,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="userId")
-    private BigInteger id;
+    @Column(name="user_id")
+    private Long id;
 
     @Column(name="full_name",nullable = false)
-    private String username;
+    private String fullName;
 
     @Column(name="email",nullable = false,unique = true)
     private String email;
@@ -30,5 +28,9 @@ public class User {
 
     @Column(name="phone",nullable = false)
     private String phone;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 }
 

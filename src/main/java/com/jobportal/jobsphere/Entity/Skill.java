@@ -4,26 +4,25 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="roles")
+@Table(name = "skills")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Roles {
+public class Skill {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private BigInteger id;
+    @Column(name = "id",nullable = false)
+    private Long id;
 
-    @Column(name = "role_name", nullable = false,unique = true)
-    private String name;
+    @Column(name = "skill_name",nullable = false,unique = true)
+    private String skillName;
 
-    @Column(name = "description",nullable = false)
+    @Column(name = "description")
     private String description;
 
     @Column(name = "created_at",nullable = false,updatable = false)

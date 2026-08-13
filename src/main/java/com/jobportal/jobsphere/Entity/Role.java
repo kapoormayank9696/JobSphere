@@ -5,23 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "skills")
+@Table(name="roles")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Skills {
+public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable = false)
-    private BigInteger id;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(name = "skill_name",nullable = false)
-    private String skillName;
+    @Column(name = "role_name", nullable = false,unique = true)
+    private String roleName;
 
     @Column(name = "description",nullable = false)
     private String description;
