@@ -4,7 +4,7 @@ import com.jobportal.jobsphere.Entity.Role;
 
 import java.util.List;
 
-public interface RoleServices {
+public interface RoleService {
 
     Role rolesSaver(Role roles);
     List<Role> getAllRoles();

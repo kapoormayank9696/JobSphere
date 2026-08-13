@@ -4,7 +4,7 @@ import com.jobportal.jobsphere.Entity.Skill;
 
 import java.util.List;
 
-public interface SkillServices {
+public interface SkillService {
 
     Skill saveSkill(Skill skill);
 

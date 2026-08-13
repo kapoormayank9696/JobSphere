@@ -4,7 +4,7 @@ import com.jobportal.jobsphere.Entity.Company;
 
 import java.util.List;
 
-public interface CompanyServices {
+public interface CompanyService {
 
     Company saveCompany(Company company);
 

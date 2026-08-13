@@ -4,7 +4,7 @@ import com.jobportal.jobsphere.Entity.Education;
 
 import java.util.List;
 
-public interface EducationServices {
+public interface EducationService {
 
     Education saveEducation(Education education);
 

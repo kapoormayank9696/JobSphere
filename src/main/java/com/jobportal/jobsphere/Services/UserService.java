@@ -4,7 +4,7 @@ import com.jobportal.jobsphere.Entity.User;
 
 import java.util.List;
 
-public interface UserServices {
+public interface UserService {
 
     User saveUser(User user);
 

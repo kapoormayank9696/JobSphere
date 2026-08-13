@@ -4,11 +4,14 @@ import com.jobportal.jobsphere.Repository.UserRolesRepository;
 
 import java.util.List;
 
-public interface UserRolesServices {
+public interface UserRolesService {
 
     UserRolesRepository saveUserRoles(UserRolesRepository userRolesRepository);
-    List<UserRolesRepository> getAllUsers();
-    UserRolesRepository getUserRolesById(int id);
-    void deleteById(int id);
+
+    List<UserRolesRepository> getAllUserRoles();
+
+    UserRolesRepository getUserRoleById(Long id);
+
+    void deleteById(Long id);
 
 }
