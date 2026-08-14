@@ -1,7 +1,6 @@
 package com.jobportal.jobsphere.Services;
 
 import com.jobportal.jobsphere.Repository.UserRolesRepository;
-
 import java.util.List;
 
 public interface UserRolesService {
