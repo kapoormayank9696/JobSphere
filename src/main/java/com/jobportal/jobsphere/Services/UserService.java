@@ -1,7 +1,6 @@
 package com.jobportal.jobsphere.Services;
 
 import com.jobportal.jobsphere.Entity.User;
-
 import java.util.List;
 
 public interface UserService {
