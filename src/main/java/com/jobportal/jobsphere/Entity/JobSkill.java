@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class JobSkill {
+    
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "job_id")
