@@ -1,4 +1,6 @@
 package com.jobportal.jobsphere.Repository;
 
-public interface JobSkillRepository {
-}
+import com.jobportal.jobsphere.Entity.JobSkill;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface JobSkillRepository extends JpaRepository<JobSkill,Long> {}
