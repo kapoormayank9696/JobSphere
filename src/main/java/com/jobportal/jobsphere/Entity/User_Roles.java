@@ -18,8 +18,8 @@ public class User_Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id",nullable = false)
-    private BigInteger user_id;
+    private Long user_id;
 
     @Column(name = "role_id",nullable = false)
-    private BigInteger role_id;
+    private Long role_id;
 }

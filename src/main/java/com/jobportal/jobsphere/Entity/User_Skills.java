@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
-import java.time.Year;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "user_skills")
@@ -19,14 +18,14 @@ public class User_Skills {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id",nullable = false)
-    private BigInteger userId;
+    private Long userId;
 
     @Column(name = "skill_id",nullable = false)
-    private BigInteger skillId;
+    private Long skillId;
 
     @Column(name = "proficiency_level",nullable = false)
     private String proficiencyLevel;
 
     @Column(name = "years_of_experience",nullable = false)
-    private Year yearOfExperience;
+    private BigDecimal yearOfExperience;
 }

@@ -23,7 +23,7 @@ public class Company {
     @Column(name = "company_name", nullable = false)
     private String companyName;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "industry", nullable = false)
@@ -66,14 +66,26 @@ public class Company {
     private Integer foundedYear;
 
     @Column(name = "verified", nullable = false)
-    private Boolean verified;
+    private Boolean verified = false;
 
     @Column(name = "status", nullable = false)
-    private String status;
+    private String status = "ACTIVE";
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false,updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        LocalDateTime now = LocalDateTime.now();
+        createdAt = now;
+        updatedAt = now;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }

@@ -6,14 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "jobs")
+@Table(name = "job_skills")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
 public class JobSkill {
-    
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "job_id")
     private Jobs job;

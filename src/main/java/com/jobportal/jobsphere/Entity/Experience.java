@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
-@Table(name = "Experience")
+@Table(name = "experience")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,20 +30,20 @@ public class Experience {
     @Column(name = "job_title",nullable = false)
     private String jobTitle;
 
-    @Column(name = "employee_type",nullable = false)
+    @Column(name = "employee_type")
     private String employeeType;
 
-    @Column(name = "location",nullable = false)
+    @Column(name = "location")
     private String location;
 
     @Column(name = "start_date",nullable = false)
-    private Integer startDate;
+    private LocalDate startDate;
 
-    @Column(name = "end_date",nullable = false)
-    private Integer endDate;
+    @Column(name = "end_date")
+    private LocalDate endDate;
 
-    @Column(name = "current_working",nullable = false)
-    private Boolean currentWoking;
+    @Column(name = "currently_working")
+    private Boolean currentlyWorking = false;
 
     @Column(name = "description")
     private String description;
