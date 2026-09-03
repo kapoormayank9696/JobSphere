@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.apache.bcel.classfile.LocalVariable;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="users")
@@ -18,20 +21,38 @@ public class User {
     @Column(name="user_id")
     private Long id;
 
-    @Column(name="full_name",nullable = false)
+    @Column(name="full_name",nullable = false, length = 255)
     private String fullName;
 
-    @Column(name="email",nullable = false,unique = true)
+    @Column(name="email",nullable = false,unique = true, length = 255)
     private String email;
 
-    @Column(name="password",nullable = false)
+    @Column(name="password",nullable = false, length = 255)
     private String password;
 
-    @Column(name="phone",nullable = false)
+    @Column(name="phone",nullable = false, length = 20)
     private String phone;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
+
+    @Column(name = "created_at",nullable = false)
+    private LocalDateTime creatAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        LocalDateTime now = LocalDateTime.now();
+        creatAt = now;
+        updatedAt = now;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }
 
