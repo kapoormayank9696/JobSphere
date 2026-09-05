@@ -1,9 +1,7 @@
 package com.jobportal.jobsphere.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -11,11 +9,12 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "jobs")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Jobs {
+public class Job {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +25,7 @@ public class Jobs {
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title", nullable = false,length = 255)
     private String title;
 
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
@@ -35,10 +34,10 @@ public class Jobs {
     @Column(name = "requirements", columnDefinition = "TEXT")
     private String requirements;
 
-    @Column(name = "employment_type")
+    @Column(name = "employment_type",nullable = false,length = 50)
     private String employmentType;
 
-    @Column(name = "experience_level")
+    @Column(name = "experience_level",nullable = false,length = 50)
     private String experienceLevel;
 
     @Column(name = "salary_min", precision = 12, scale = 2)
@@ -47,22 +46,22 @@ public class Jobs {
     @Column(name = "salary_max", precision = 12, scale = 2)
     private BigDecimal salaryMax;
 
-    @Column(name = "location")
+    @Column(name = "location",length = 255)
     private String location;
 
-    @Column(name = "city")
+    @Column(name = "city",length = 100)
     private String city;
 
-    @Column(name = "state")
+    @Column(name = "state",length = 100)
     private String state;
 
-    @Column(name = "country")
+    @Column(name = "country",length = 100)
     private String country;
 
     @Column(name = "remote", nullable = false)
     private Boolean remote = false;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false,length = 50)
     private String status = "ACTIVE";
 
     @Column(name = "deadline")

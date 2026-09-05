@@ -1,15 +1,14 @@
 package com.jobportal.jobsphere.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "experience")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -20,20 +19,20 @@ public class Experience {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "company_name",nullable = false)
+    @Column(name = "company_name",nullable = false,length = 255)
     private String companyName;
 
-    @Column(name = "job_title",nullable = false)
+    @Column(name = "job_title",nullable = false,length = 255)
     private String jobTitle;
 
-    @Column(name = "employee_type")
+    @Column(name = "employee_type",length = 50)
     private String employeeType;
 
-    @Column(name = "location")
+    @Column(name = "location",length = 255)
     private String location;
 
     @Column(name = "start_date",nullable = false)
@@ -42,9 +41,9 @@ public class Experience {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @Column(name = "currently_working")
+    @Column(name = "currently_working",nullable = false)
     private Boolean currentlyWorking = false;
 
-    @Column(name = "description")
+    @Column(name = "description",columnDefinition = "TEXT")
     private String description;
 }

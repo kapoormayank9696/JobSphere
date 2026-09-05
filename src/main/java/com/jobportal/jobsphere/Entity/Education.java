@@ -9,7 +9,8 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "education")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -20,17 +21,17 @@ public class Education {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(name = "institute_name", nullable = false,length = 255)
     private String instituteName;
 
-    @Column(name = "degree", nullable = false,length = 100)
+    @Column(name = "degree", nullable = false,length = 255)
     private String degree;
 
-    @Column(name = "field_of_study", nullable = false,length = 150)
+    @Column(name = "field_of_study", nullable = false,length = 255)
     private String fieldOfStudy;
 
     @Column(name = "start_year", nullable = false)

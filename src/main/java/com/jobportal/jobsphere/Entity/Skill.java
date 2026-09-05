@@ -1,14 +1,14 @@
 package com.jobportal.jobsphere.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "skills")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -19,12 +19,17 @@ public class Skill {
     @Column(name = "id",nullable = false)
     private Long id;
 
-    @Column(name = "skill_name",nullable = false,unique = true)
+    @Column(name = "skill_name",nullable = false,unique = true,length = 100)
     private String skillName;
 
-    @Column(name = "description")
+    @Column(name = "description",columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "created_at",nullable = false,updatable = false)
     private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 }

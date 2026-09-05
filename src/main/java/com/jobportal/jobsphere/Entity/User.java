@@ -1,16 +1,14 @@
 package com.jobportal.jobsphere.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.aspectj.apache.bcel.classfile.LocalVariable;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name="users")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -37,8 +35,8 @@ public class User {
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
-    @Column(name = "created_at",nullable = false)
-    private LocalDateTime creatAt;
+    @Column(name = "created_at",nullable = false,updatable = false)
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
@@ -46,7 +44,7 @@ public class User {
     @PrePersist
     protected void onCreate() {
         LocalDateTime now = LocalDateTime.now();
-        creatAt = now;
+        createdAt = now;
         updatedAt = now;
     }
 
