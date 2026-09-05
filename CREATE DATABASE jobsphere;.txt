@@ -1,6 +1,11 @@
+WAIT-- =========================================================
+-- JOB SPHERE DATABASE
+-- =========================================================
+
 CREATE DATABASE IF NOT EXISTS jobsphere;
 
 USE jobsphere;
+
 
 -- =========================================================
 -- 1. ROLES
@@ -8,10 +13,11 @@ USE jobsphere;
 
 CREATE TABLE roles (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    role_name VARCHAR(100) NOT NULL UNIQUE,
-    description TEXT NOT NULL,
+    role_name VARCHAR(50) NOT NULL UNIQUE,
+    description TEXT,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
 
 -- =========================================================
 -- 2. USERS
@@ -25,6 +31,10 @@ CREATE TABLE users (
     phone VARCHAR(20) NOT NULL,
     role_id BIGINT NOT NULL,
 
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
     CONSTRAINT fk_users_role
         FOREIGN KEY (role_id)
         REFERENCES roles(id)
@@ -32,27 +42,29 @@ CREATE TABLE users (
         ON UPDATE CASCADE
 );
 
+
 -- =========================================================
--- 3. COMPANY
+-- 3. COMPANIES
 -- =========================================================
 
-CREATE TABLE company (
+CREATE TABLE companies (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     company_name VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
+    description TEXT,
     industry VARCHAR(255) NOT NULL,
-    website VARCHAR(255) NOT NULL,
+    website VARCHAR(255),
     email VARCHAR(255) NOT NULL UNIQUE,
-    phone VARCHAR(20) NOT NULL,
-    location VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    city VARCHAR(100) NOT NULL,
-    state VARCHAR(100) NOT NULL,
-    country VARCHAR(100) NOT NULL,
-    postal_code VARCHAR(20) NOT NULL,
+    phone VARCHAR(20),
+    location VARCHAR(255),
+    address VARCHAR(255),
+    city VARCHAR(100),
+    state VARCHAR(100),
+    country VARCHAR(100),
+    postal_code VARCHAR(20),
     logo_url VARCHAR(500),
-    company_size VARCHAR(100) NOT NULL,
+    company_size VARCHAR(100),
     founded_year INT,
+
     verified BOOLEAN NOT NULL DEFAULT FALSE,
     status VARCHAR(50) NOT NULL DEFAULT 'ACTIVE',
 
@@ -60,6 +72,7 @@ CREATE TABLE company (
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
 );
+
 
 -- =========================================================
 -- 4. EDUCATION
@@ -70,10 +83,14 @@ CREATE TABLE education (
     user_id BIGINT NOT NULL,
     institute_name VARCHAR(255) NOT NULL,
     degree VARCHAR(255) NOT NULL,
-    field_of_study VARCHAR(255) NOT NULL,
+    field_of_study VARCHAR(255),
     start_year YEAR NOT NULL,
     end_year YEAR,
     percentage DECIMAL(5,2),
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_education_user
         FOREIGN KEY (user_id)
@@ -81,6 +98,7 @@ CREATE TABLE education (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
 
 -- =========================================================
 -- 5. SKILLS
@@ -90,11 +108,14 @@ CREATE TABLE skills (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     skill_name VARCHAR(100) NOT NULL UNIQUE,
     description TEXT,
+
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+
 -- =========================================================
 -- 6. USER SKILLS
+-- Many-to-Many: Users <-> Skills
 -- =========================================================
 
 CREATE TABLE user_skills (
@@ -117,6 +138,7 @@ CREATE TABLE user_skills (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
 
 -- =========================================================
 -- 7. RESUMES
@@ -141,6 +163,7 @@ CREATE TABLE resumes (
         ON UPDATE CASCADE
 );
 
+
 -- =========================================================
 -- 8. EXPERIENCE
 -- =========================================================
@@ -152,10 +175,16 @@ CREATE TABLE experience (
     job_title VARCHAR(255) NOT NULL,
     employee_type VARCHAR(50),
     location VARCHAR(255),
+
     start_date DATE NOT NULL,
     end_date DATE,
     currently_working BOOLEAN NOT NULL DEFAULT FALSE,
+
     description TEXT,
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_experience_user
         FOREIGN KEY (user_id)
@@ -164,6 +193,7 @@ CREATE TABLE experience (
         ON UPDATE CASCADE
 );
 
+
 -- =========================================================
 -- 9. JOBS
 -- =========================================================
@@ -171,19 +201,25 @@ CREATE TABLE experience (
 CREATE TABLE jobs (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     company_id BIGINT NOT NULL,
+
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     requirements TEXT,
+
     employment_type VARCHAR(50) NOT NULL,
-    experience_level VARCHAR(50),
+    experience_level VARCHAR(50) NOT NULL,
+
     salary_min DECIMAL(12,2),
     salary_max DECIMAL(12,2),
-    location VARCHAR(255),
+
+    location VARCHAR(255) NOT NULL,
     city VARCHAR(100),
     state VARCHAR(100),
     country VARCHAR(100),
+
     remote BOOLEAN NOT NULL DEFAULT FALSE,
     status VARCHAR(50) NOT NULL DEFAULT 'ACTIVE',
+
     deadline DATE,
 
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -192,13 +228,15 @@ CREATE TABLE jobs (
 
     CONSTRAINT fk_jobs_company
         FOREIGN KEY (company_id)
-        REFERENCES company(id)
-        ON DELETE CASCADE
+        REFERENCES companies(id)
+        ON DELETE RESTRICT
         ON UPDATE CASCADE
 );
 
+
 -- =========================================================
 -- 10. JOB SKILLS
+-- Many-to-Many: Jobs <-> Skills
 -- =========================================================
 
 CREATE TABLE job_skills (
@@ -220,32 +258,37 @@ CREATE TABLE job_skills (
         ON UPDATE CASCADE
 );
 
+
 -- =========================================================
--- 11. JOB APPLICATIONS
+-- 11. APPLICATIONS
+-- Many-to-Many: Users <-> Jobs
 -- =========================================================
 
 CREATE TABLE applications (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    job_id BIGINT NOT NULL,
+
     user_id BIGINT NOT NULL,
+    job_id BIGINT NOT NULL,
     resume_id BIGINT,
+
     cover_letter TEXT,
+
     status VARCHAR(50) NOT NULL DEFAULT 'APPLIED',
 
     applied_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP,
 
-    CONSTRAINT fk_applications_job
-        FOREIGN KEY (job_id)
-        REFERENCES jobs(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-
     CONSTRAINT fk_applications_user
         FOREIGN KEY (user_id)
         REFERENCES users(user_id)
-        ON DELETE CASCADE
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_applications_job
+        FOREIGN KEY (job_id)
+        REFERENCES jobs(id)
+        ON DELETE RESTRICT
         ON UPDATE CASCADE,
 
     CONSTRAINT fk_applications_resume
@@ -254,33 +297,66 @@ CREATE TABLE applications (
         ON DELETE SET NULL
         ON UPDATE CASCADE,
 
-    CONSTRAINT uq_job_user
-        UNIQUE (job_id, user_id)
+    CONSTRAINT uk_application_user_job
+        UNIQUE (user_id, job_id)
 );
 
+
 -- =========================================================
--- 12. SAVED JOBS
+-- OPTIONAL INDEXES
 -- =========================================================
 
-CREATE TABLE saved_jobs (
-    user_id BIGINT NOT NULL,
-    job_id BIGINT NOT NULL,
-    saved_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+CREATE INDEX idx_users_role
+    ON users(role_id);
 
-    PRIMARY KEY (user_id, job_id),
+CREATE INDEX idx_education_user
+    ON education(user_id);
 
-    CONSTRAINT fk_saved_jobs_user
-        FOREIGN KEY (user_id)
-        REFERENCES users(user_id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
+CREATE INDEX idx_experience_user
+    ON experience(user_id);
 
-    CONSTRAINT fk_saved_jobs_job
-        FOREIGN KEY (job_id)
-        REFERENCES jobs(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
+CREATE INDEX idx_resumes_user
+    ON resumes(user_id);
+
+CREATE INDEX idx_jobs_company
+    ON jobs(company_id);
+
+CREATE INDEX idx_jobs_location
+    ON jobs(city, state, country);
+
+CREATE INDEX idx_jobs_status
+    ON jobs(status);
+
+CREATE INDEX idx_jobs_deadline
+    ON jobs(deadline);
+
+CREATE INDEX idx_applications_user
+    ON applications(user_id);
+
+CREATE INDEX idx_applications_job
+    ON applications(job_id);
+
+CREATE INDEX idx_applications_status
+    ON applications(status);
+
+
+-- =========================================================
+-- INITIAL ROLES
+-- =========================================================
+
+INSERT INTO roles (role_name, description)
+VALUES
+('JOB_SEEKER', 'User who searches and applies for jobs'),
+('RECRUITER', 'User who manages company jobs and applications'),
+('ADMIN', 'Administrator who manages the Job Sphere platform');
+
+
+-- =========================================================
+-- DROP DATABASE
+-- WARNING: THIS DELETES EVERYTHING
+-- =========================================================
+
+-- DROP DATABASE jobsphere;
 
 -- =========================================================
 -- 13. INDEXES

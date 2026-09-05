@@ -1,0 +1,23 @@
+                    JAVA
+                      │
+        ┌─────────────┴─────────────┐
+        │                           │
+       DSA                       BACKEND
+        │                           │
+   LeetCode                    Spring Boot
+        │                           │
+   Algorithms                  Spring MVC
+        │                           │
+      Graphs                    Spring Data JPA
+        │                           │
+       Trees                    Hibernate
+        │                           │
+        DP                        MySQL
+                                    │
+                              Spring Security
+                                    │
+                                   JWT
+                                    │
+                                  REST API
+                                    │
+                                 Git/GitHub
