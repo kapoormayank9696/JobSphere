@@ -1,5 +1,6 @@
 package com.jobportal.jobsphere.service.impl;
 
+import com.jobportal.jobsphere.ResourceNotfoundException;
 import com.jobportal.jobsphere.entity.Job;
 import com.jobportal.jobsphere.repository.JobRepository;
 import com.jobportal.jobsphere.service.JobService;
@@ -30,7 +31,9 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Job getJobById(Long id) {
-        return jobRepository.findById(id).orElseThrow(() -> new RuntimeException("Job not found with id: "+id));
+        return jobRepository.findById(id).
+                orElseThrow(() -> new
+                        ResourceNotfoundException("Job not found with id: "+id));
     }
 
     @Override
