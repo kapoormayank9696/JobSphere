@@ -1,4 +1,4 @@
-package com.jobportal.jobsphere.Services;
+package com.jobportal.jobsphere.service;
 
 import com.jobportal.jobsphere.entity.User;
 import java.util.List;
