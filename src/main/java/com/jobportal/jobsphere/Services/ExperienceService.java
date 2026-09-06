@@ -10,7 +10,7 @@ public interface ExperienceService {
 
     List<Experience> getAllExperiences();
 
-    Experience getById(Long id);
+    Experience getExperienceById(Long id);
 
     void deleteById(Long id);
 }

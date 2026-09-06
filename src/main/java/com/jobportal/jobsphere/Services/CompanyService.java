@@ -9,7 +9,7 @@ public interface CompanyService {
 
     List<Company> getAllCompanies();
 
-    Company getById(Long id);
+    Company getCompanyById(Long id);
 
     void deleteById(Long id);
 
