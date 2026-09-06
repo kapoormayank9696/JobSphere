@@ -1,4 +1,4 @@
-package com.jobportal.jobsphere.Repository;
+package com.jobportal.jobsphere.repository;
 
 import com.jobportal.jobsphere.entity.Experience;
 import org.springframework.data.jpa.repository.JpaRepository;
