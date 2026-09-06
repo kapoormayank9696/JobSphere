@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.Services;
 
-import com.jobportal.jobsphere.Entity.Education;
+import com.jobportal.jobsphere.entity.Education;
 import java.util.List;
 
 public interface EducationService {

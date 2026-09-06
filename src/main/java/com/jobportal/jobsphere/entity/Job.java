@@ -1,4 +1,4 @@
-package com.jobportal.jobsphere.Entity;
+package com.jobportal.jobsphere.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -46,7 +46,7 @@ public class Job {
     @Column(name = "salary_max", precision = 12, scale = 2)
     private BigDecimal salaryMax;
 
-    @Column(name = "location",length = 255)
+    @Column(name = "location",nullable = false, length = 255)
     private String location;
 
     @Column(name = "city",length = 100)
@@ -59,7 +59,7 @@ public class Job {
     private String country;
 
     @Column(name = "remote", nullable = false)
-    private Boolean remote = false;
+    private boolean remote = false;
 
     @Column(name = "status", nullable = false,length = 50)
     private String status = "ACTIVE";

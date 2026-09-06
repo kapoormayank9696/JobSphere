@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.Services;
 
-import com.jobportal.jobsphere.Entity.Experience;
+import com.jobportal.jobsphere.entity.Experience;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.Services;
 
-import com.jobportal.jobsphere.Entity.Role;
+import com.jobportal.jobsphere.entity.Role;
 import java.util.List;
 
 public interface RoleService {

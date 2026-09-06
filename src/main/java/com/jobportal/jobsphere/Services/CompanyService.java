@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.Services;
 
-import com.jobportal.jobsphere.Entity.Company;
+import com.jobportal.jobsphere.entity.Company;
 import java.util.List;
 
 public interface CompanyService {

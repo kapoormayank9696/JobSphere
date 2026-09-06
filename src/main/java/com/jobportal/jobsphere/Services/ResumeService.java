@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.Services;
 
-import com.jobportal.jobsphere.Entity.Resume;
+import com.jobportal.jobsphere.entity.Resume;
 
 import java.util.List;
 

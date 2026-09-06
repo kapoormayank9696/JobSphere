@@ -1,4 +1,4 @@
-package com.jobportal.jobsphere.Entity;
+package com.jobportal.jobsphere.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,21 +6,21 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="roles")
+@Table(name = "skills")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Role {
+public class Skill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id",nullable = false)
     private Long id;
 
-    @Column(name = "role_name", nullable = false,unique = true,length = 50)
-    private String roleName;
+    @Column(name = "skill_name",nullable = false,unique = true,length = 100)
+    private String skillName;
 
     @Column(name = "description",columnDefinition = "TEXT")
     private String description;

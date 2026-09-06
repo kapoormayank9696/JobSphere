@@ -1,4 +1,4 @@
-package com.jobportal.jobsphere.Entity;
+package com.jobportal.jobsphere.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

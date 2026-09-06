@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.Services;
 
-import com.jobportal.jobsphere.Entity.JobSkill;
+import com.jobportal.jobsphere.entity.JobSkill;
 
 import java.util.List;
 
