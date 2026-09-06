@@ -3,9 +3,11 @@ package com.jobportal.jobsphere.service.impl;
 import com.jobportal.jobsphere.entity.Company;
 import com.jobportal.jobsphere.repository.CompanyRepository;
 import com.jobportal.jobsphere.service.CompanyService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CompanyServiceImpl implements CompanyService {
 
     // Data Member with final Keyword
@@ -28,7 +30,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company getCompanyById(Long id) {
-        return companyRepository.getReferenceById(id);
+        return companyRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Company not found with id: " + id)
+        );
     }
 
     @Override

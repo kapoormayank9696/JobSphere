@@ -3,9 +3,11 @@ package com.jobportal.jobsphere.service.impl;
 import com.jobportal.jobsphere.entity.Resume;
 import com.jobportal.jobsphere.repository.ResumeRepository;
 import com.jobportal.jobsphere.service.ResumeService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ResumeServiceImpl implements ResumeService {
 
     // Data Members with final Keyword
@@ -28,7 +30,7 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     public Resume getResumeById(Long id) {
-        return resumeRepository.getReferenceById(id);
+        return resumeRepository.findById(id).orElseThrow(() -> new RuntimeException("Resume not found with id: "+id));
     }
 
     @Override

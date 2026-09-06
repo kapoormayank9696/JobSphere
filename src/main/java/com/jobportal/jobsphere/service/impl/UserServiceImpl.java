@@ -3,15 +3,15 @@ package com.jobportal.jobsphere.service.impl;
 import com.jobportal.jobsphere.entity.User;
 import com.jobportal.jobsphere.repository.UserRepository;
 import com.jobportal.jobsphere.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
 
-    // Data Members with final Keyword
     private final UserRepository userRepository;
 
-    // Parameterized constructor
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -28,12 +28,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) {
-        return userRepository.getReferenceById(id);
+        return userRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("User not found with id: " + id));
     }
 
     @Override
     public User getUserByEmail(String email) {
-        return userRepository.findBy(email);
+        return userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException("User not found with email: " + email));
     }
 
     @Override

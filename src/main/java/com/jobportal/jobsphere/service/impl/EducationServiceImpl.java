@@ -3,9 +3,11 @@ package com.jobportal.jobsphere.service.impl;
 import com.jobportal.jobsphere.entity.Education;
 import com.jobportal.jobsphere.repository.EducationRepository;
 import com.jobportal.jobsphere.service.EducationService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class EducationServiceImpl implements EducationService {
 
     // Data Members with final Keyword
@@ -28,7 +30,7 @@ public class EducationServiceImpl implements EducationService {
 
     @Override
     public Education getEducationById(Long id) {
-        return educationRepository.getReferenceById(id);
+        return educationRepository.findById(id).orElseThrow(() -> new RuntimeException("Education not found with id: " + id));
     }
 
     @Override

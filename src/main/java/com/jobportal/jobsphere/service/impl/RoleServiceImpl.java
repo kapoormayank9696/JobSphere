@@ -3,9 +3,11 @@ package com.jobportal.jobsphere.service.impl;
 import com.jobportal.jobsphere.entity.Role;
 import com.jobportal.jobsphere.repository.RoleRepository;
 import com.jobportal.jobsphere.service.RoleService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoleServiceImpl implements RoleService {
 
     // Data Members with final Keyword
@@ -28,7 +30,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getRoleById(Long id) {
-        return roleRepository.getReferenceById(id);
+        return roleRepository.findById(id).orElseThrow(() -> new RuntimeException("Role not found with id: "+id));
     }
 
     @Override

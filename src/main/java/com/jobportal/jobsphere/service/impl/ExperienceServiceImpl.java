@@ -3,9 +3,11 @@ package com.jobportal.jobsphere.service.impl;
 import com.jobportal.jobsphere.entity.Experience;
 import com.jobportal.jobsphere.repository.ExperienceRepository;
 import com.jobportal.jobsphere.service.ExperienceService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ExperienceServiceImpl implements ExperienceService {
 
     // Data Members with final Keyword
@@ -28,7 +30,7 @@ public class ExperienceServiceImpl implements ExperienceService {
 
     @Override
     public Experience getExperienceById(Long id) {
-        return experienceRepository.getReferenceById(id);
+        return experienceRepository.findById(id).orElseThrow(() -> new RuntimeException("Experience not found with id: " + id));
     }
 
     @Override

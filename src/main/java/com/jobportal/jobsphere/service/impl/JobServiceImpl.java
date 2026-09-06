@@ -3,9 +3,11 @@ package com.jobportal.jobsphere.service.impl;
 import com.jobportal.jobsphere.entity.Job;
 import com.jobportal.jobsphere.repository.JobRepository;
 import com.jobportal.jobsphere.service.JobService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class JobServiceImpl implements JobService {
 
     // Data Members with final Keyword
@@ -28,7 +30,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Job getJobById(Long id) {
-        return jobRepository.getReferenceById(id);
+        return jobRepository.findById(id).orElseThrow(() -> new RuntimeException("Job not found with id: "+id));
     }
 
     @Override

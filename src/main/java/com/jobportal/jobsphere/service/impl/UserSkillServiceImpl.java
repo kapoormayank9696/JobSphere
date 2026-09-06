@@ -1,11 +1,14 @@
 package com.jobportal.jobsphere.service.impl;
 
 import com.jobportal.jobsphere.entity.UserSkill;
+import com.jobportal.jobsphere.entity.UserSkillId;
 import com.jobportal.jobsphere.repository.UserSkillRepository;
 import com.jobportal.jobsphere.service.UserSkillService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserSkillServiceImpl implements UserSkillService {
 
     // Data Members with final Keyword
@@ -28,11 +31,19 @@ public class UserSkillServiceImpl implements UserSkillService {
 
     @Override
     public UserSkill getUserSkillById(Long userId, Long skillId) {
-        return userSkillRepository.getReferenceById(userId,skillId);
+        UserSkillId id = new UserSkillId(userId, skillId);
+        return userSkillRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "User Skill not found with userId: " + userId +
+                                        " and skillId: " + skillId
+                        )
+                );
     }
 
     @Override
     public void deleteUserSkill(Long userId, Long skillId) {
-        userSkillRepository.deleteById(userId,skillId);
+        UserSkillId id = new UserSkillId(userId,skillId);
+        userSkillRepository.deleteById(id);
     }
 }

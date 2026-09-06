@@ -3,9 +3,11 @@ package com.jobportal.jobsphere.service.impl;
 import com.jobportal.jobsphere.entity.Skill;
 import com.jobportal.jobsphere.repository.SkillRepository;
 import com.jobportal.jobsphere.service.SkillService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SkillServiceImpl implements SkillService {
 
     // Data Members with final Keyword
@@ -28,7 +30,7 @@ public class SkillServiceImpl implements SkillService {
 
     @Override
     public Skill getSkillById(Long id) {
-        return skillRepository.getReferenceById(id);
+        return skillRepository.findById(id).orElseThrow(() -> new RuntimeException("Skill not found with id: "+id));
     }
 
     @Override
