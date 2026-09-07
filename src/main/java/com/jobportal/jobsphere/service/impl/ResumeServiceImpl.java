@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.service.impl;
 
-import com.jobportal.jobsphere.exception.ResourceNotfoundException;
+import com.jobportal.jobsphere.exception.ResourceNotFoundException;
 import com.jobportal.jobsphere.entity.Resume;
 import com.jobportal.jobsphere.repository.ResumeRepository;
 import com.jobportal.jobsphere.service.ResumeService;
@@ -33,7 +33,7 @@ public class ResumeServiceImpl implements ResumeService {
     public Resume getResumeById(Long id) {
         return resumeRepository.findById(id).
                 orElseThrow(() -> new
-                        ResourceNotfoundException("Resume not found with id: "+id));
+                        ResourceNotFoundException("Resume not found with id: "+id));
     }
 
     @Override

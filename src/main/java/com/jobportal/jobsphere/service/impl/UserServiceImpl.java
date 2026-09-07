@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.service.impl;
 
-import com.jobportal.jobsphere.exception.ResourceNotfoundException;
+import com.jobportal.jobsphere.exception.ResourceNotFoundException;
 import com.jobportal.jobsphere.entity.User;
 import com.jobportal.jobsphere.repository.UserRepository;
 import com.jobportal.jobsphere.service.UserService;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     public User getUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() ->
-                        new ResourceNotfoundException("User not found with id: " + id));
+                        new ResourceNotFoundException("User not found with id: " + id));
     }
 
     @Override

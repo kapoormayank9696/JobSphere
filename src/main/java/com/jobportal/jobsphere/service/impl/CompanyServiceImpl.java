@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.service.impl;
 
-import com.jobportal.jobsphere.exception.ResourceNotfoundException;
+import com.jobportal.jobsphere.exception.ResourceNotFoundException;
 import com.jobportal.jobsphere.entity.Company;
 import com.jobportal.jobsphere.repository.CompanyRepository;
 import com.jobportal.jobsphere.service.CompanyService;
@@ -33,7 +33,7 @@ public class CompanyServiceImpl implements CompanyService {
     public Company getCompanyById(Long id) {
         return companyRepository.findById(id).
                 orElseThrow(() -> new
-                        ResourceNotfoundException("Company not found with id: " + id)
+                        ResourceNotFoundException("Company not found with id: " + id)
         );
     }
 

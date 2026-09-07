@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.service.impl;
 
-import com.jobportal.jobsphere.exception.ResourceNotfoundException;
+import com.jobportal.jobsphere.exception.ResourceNotFoundException;
 import com.jobportal.jobsphere.entity.Experience;
 import com.jobportal.jobsphere.repository.ExperienceRepository;
 import com.jobportal.jobsphere.service.ExperienceService;
@@ -33,7 +33,7 @@ public class ExperienceServiceImpl implements ExperienceService {
     public Experience getExperienceById(Long id) {
         return experienceRepository.findById(id).
                 orElseThrow(() -> new
-                        ResourceNotfoundException("Experience not found with id: " + id));
+                        ResourceNotFoundException("Experience not found with id: " + id));
     }
 
     @Override

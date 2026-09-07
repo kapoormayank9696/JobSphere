@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.service.impl;
 
-import com.jobportal.jobsphere.exception.ResourceNotfoundException;
+import com.jobportal.jobsphere.exception.ResourceNotFoundException;
 import com.jobportal.jobsphere.entity.Skill;
 import com.jobportal.jobsphere.repository.SkillRepository;
 import com.jobportal.jobsphere.service.SkillService;
@@ -33,7 +33,7 @@ public class SkillServiceImpl implements SkillService {
     public Skill getSkillById(Long id) {
         return skillRepository.findById(id).
                 orElseThrow(() -> new
-                        ResourceNotfoundException("Skill not found with id: "+id));
+                        ResourceNotFoundException("Skill not found with id: "+id));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.service.impl;
 
-import com.jobportal.jobsphere.exception.ResourceNotfoundException;
+import com.jobportal.jobsphere.exception.ResourceNotFoundException;
 import com.jobportal.jobsphere.entity.Role;
 import com.jobportal.jobsphere.repository.RoleRepository;
 import com.jobportal.jobsphere.service.RoleService;
@@ -33,7 +33,7 @@ public class RoleServiceImpl implements RoleService {
     public Role getRoleById(Long id) {
         return roleRepository.findById(id).
                 orElseThrow(() -> new
-                        ResourceNotfoundException("Role not found with id: "+id));
+                        ResourceNotFoundException("Role not found with id: "+id));
     }
 
     @Override
