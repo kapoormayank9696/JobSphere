@@ -13,6 +13,7 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
+
     public ResponseEntity<Map<String,Object>> handleResourceNotFoundException (
             ResourceNotFoundException exception) {
 
