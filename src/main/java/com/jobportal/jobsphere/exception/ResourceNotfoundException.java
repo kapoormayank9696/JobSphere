@@ -1,4 +1,4 @@
-package com.jobportal.jobsphere;
+package com.jobportal.jobsphere.exception;
 
 public class ResourceNotfoundException extends RuntimeException {
 

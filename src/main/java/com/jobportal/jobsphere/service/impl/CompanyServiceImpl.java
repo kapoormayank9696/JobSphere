@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.service.impl;
 
-import com.jobportal.jobsphere.ResourceNotfoundException;
+import com.jobportal.jobsphere.exception.ResourceNotfoundException;
 import com.jobportal.jobsphere.entity.Company;
 import com.jobportal.jobsphere.repository.CompanyRepository;
 import com.jobportal.jobsphere.service.CompanyService;

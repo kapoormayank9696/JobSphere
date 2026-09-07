@@ -1,6 +1,6 @@
 package com.jobportal.jobsphere.service.impl;
 
-import com.jobportal.jobsphere.ResourceNotfoundException;
+import com.jobportal.jobsphere.exception.ResourceNotfoundException;
 import com.jobportal.jobsphere.entity.UserSkill;
 import com.jobportal.jobsphere.entity.UserSkillId;
 import com.jobportal.jobsphere.repository.UserSkillRepository;
