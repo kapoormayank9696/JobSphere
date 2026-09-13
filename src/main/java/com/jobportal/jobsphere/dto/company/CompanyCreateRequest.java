@@ -23,5 +23,16 @@ public class CompanyCreateRequest {
     private String description;
 
     @NotBlank(message = "Industry is required")
+    @Size (
+            max = 255,
+            message = "Industry cannot exceed 255 characters"
+    )
     private String industry;
+
+    @NotBlank(message = "Website is required")
+    @Size (
+            max = 255,
+            message = "Website cannot exceed 255 characters"
+    )
+    private String website;
 }
