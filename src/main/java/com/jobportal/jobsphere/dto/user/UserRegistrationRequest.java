@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class UserCreateRequest {
+public class UserRegistrationRequest {
     @NotBlank(message = "Full name is required")
     @Size (
             min = 2,

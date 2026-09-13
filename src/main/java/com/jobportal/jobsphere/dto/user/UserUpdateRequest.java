@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class UserUpdateResponse {
+public class UserUpdateRequest {
 
     @Size (
             min = 2,
