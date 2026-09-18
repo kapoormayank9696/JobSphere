@@ -3,6 +3,8 @@ package com.jobportal.jobsphere.dto.company;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.NoArgsConstructor;
 import lombok.Getter;
@@ -25,7 +27,7 @@ public class CompanyCreateRequest {
     @NotBlank(message = "Company description is required")
     @Size (
             max = 5000,
-            message = "Company cannot exceed 255 characters"
+            message = "Description cannot exceed 5000 characters"
     )
     private String description;
 
@@ -107,5 +109,7 @@ public class CompanyCreateRequest {
     )
     private String companySize;
 
+    @Min(value = 1800, message = "Founded year must be valid")
+    @Max(value = 2026, message = "Founded year cannot be in the future")
     private Integer foundedYear;
 }
