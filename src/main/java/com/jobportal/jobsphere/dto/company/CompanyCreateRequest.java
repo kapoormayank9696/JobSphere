@@ -25,6 +25,10 @@ public class CompanyCreateRequest {
     private String companyName;
 
     @NotBlank(message = "Company description is required")
+    @Size (
+            max = 255,
+            message = "Company cannot exceed 255 characters"
+    )
     private String description;
 
     @NotBlank(message = "Industry is required")
