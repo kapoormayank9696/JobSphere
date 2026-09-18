@@ -1,12 +1,19 @@
 package com.jobportal.jobsphere.dto.education;
 
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.math.BigDecimal;
+
+@Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -47,4 +54,20 @@ public class EducationCreateRequest {
 
     @Min(value = 1900, message = "End year must be valid")
     private Integer endYear;
+
+    @NotBlank(message = "Percentage of study is required")
+    @DecimalMin(
+            value = "0.00",
+            message = "Percentage cannot be less than 0"
+    )
+    @DecimalMax(
+            value = "100.00",
+            message = "Percentage cannot exceed 100"
+    )
+    @Digits(
+            integer = 3,
+            fraction = 2,
+            message = "Percentage can have maximum 2 decimal places"
+    )
+    private BigDecimal percentage;
 }
