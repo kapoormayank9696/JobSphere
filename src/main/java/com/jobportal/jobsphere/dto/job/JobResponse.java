@@ -10,8 +10,8 @@ import java.math.BigDecimal;
 
 public class JobResponse {
 
-    private Integer id;
-    private Integer userId;
+    private Long id;
+    private Long companyId;
     private String title;
     private String description;
     private String requirement;
@@ -21,5 +21,10 @@ public class JobResponse {
     private BigDecimal salaryMax;
     private String location;
     private String city;
+    private String state;
+    private String country;
+    private Boolean remote;
+    private String status;
+    private Integer deadline;
 
 }

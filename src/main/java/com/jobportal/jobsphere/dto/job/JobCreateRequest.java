@@ -2,6 +2,7 @@ package com.jobportal.jobsphere.dto.job;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,47 +15,94 @@ import java.math.BigDecimal;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class JobCreateRequest {
 
-    @NotBlank(message = "Company Id is required")
-    private Integer userId;
+    @NotNull(message = "Company Id is required")
+    private Long companyId;
 
-    @NotBlank(message = "Tile is must be required")
-    @Size (
+    @NotBlank(message = "Title is required")
+    @Size(
             max = 255,
-            message = "Tile cannot exceed from 255 characters"
+            message = "Title cannot exceed 255 characters"
     )
     private String title;
 
-    @NotBlank(message = "Description")
-    @Size (
+    @NotBlank(message = "Description is required")
+    @Size(
             max = 5000,
-            message = "Description cannot be exceed from 5000 characters"
+            message = "Description cannot exceed 5000 characters"
     )
     private String description;
 
-    @NotBlank(message = "Requirement")
-    @Size (
+    @NotBlank(message = "Requirement is required")
+    @Size(
             max = 5000,
-            message = "Requirement cannot be exceed from 5000 characters"
+            message = "Requirement cannot exceed 5000 characters"
     )
     private String requirement;
 
-    @NotBlank(message = "Employee Type is required")
-    @Size (
+    @NotBlank(message = "Employee type is required")
+    @Size(
             max = 50,
-            message = "Employee type is cannot exceed to 50 characters"
+            message = "Employee type cannot exceed 50 characters"
     )
     private String employeeType;
 
-    @NotBlank(message = "Experience Level is required")
-    @Size (
+    @NotBlank(message = "Experience level is required")
+    @Size(
             max = 50,
-            message = "Experience level is cannot exceed to 50 characters"
+            message = "Experience level cannot exceed 50 characters"
     )
     private String experienceLevel;
 
-    @NotBlank(message = "Minimum Salary is required")
+    @NotNull(message = "Minimum salary is required")
+    @DecimalMin(
+            value = "0.00",
+            message = "Minimum salary cannot be negative"
+    )
     private BigDecimal salaryMin;
+
+    @DecimalMin(
+            value = "0.00",
+            message = "Maximum salary cannot be negative"
+    )
+    private BigDecimal salaryMax;
+
+    @NotBlank(message = "Location is required")
+    @Size(
+            max = 255,
+            message = "Location cannot exceed 255 characters"
+    )
+    private String location;
+
+    @NotBlank(message = "City is required")
+    @Size(
+            max = 100,
+            message = "City cannot exceed 100 characters"
+    )
+    private String city;
+
+    @NotBlank(message = "State is required")
+    @Size(
+            max = 100,
+            message = "State cannot exceed 100 characters"
+    )
+    private String state;
+
+    @NotBlank(message = "Country is required")
+    @Size(
+            max = 255,
+            message = "Country cannot exceed 255 characters"
+    )
+    private String country;
+
+    @NotNull(message = "Remote status is required")
+    private Boolean remote;
+
+    @NotBlank(message = "Status is required")
+    private String status;
+
+    @NotNull(message = "Deadline is required")
+    private Integer deadline;
+
 }
