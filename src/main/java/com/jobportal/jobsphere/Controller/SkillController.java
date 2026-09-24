@@ -1,5 +1,6 @@
 package com.jobportal.jobsphere.Controller;
 
+import com.jobportal.jobsphere.dto.skill.SkillResponse;
 import com.jobportal.jobsphere.entity.Skill;
 import com.jobportal.jobsphere.service.SkillService;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,14 @@ public class SkillController {
     }
 
     @GetMapping("/{id}")
-    public Skill getById(@PathVariable Long id) {
-        return skillService.getSkillById(id);
+    public ResponseEntity<SkillResponse> getSkillById(@PathVariable Long id) {
+        Skill skill = skillService.getSkillById(id);
+        SkillResponse response = new SkillResponse(
+                skill.getId(),
+                skill.getSkillName(),
+                skill.getDescription()
+        );
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/delete/{id}")
