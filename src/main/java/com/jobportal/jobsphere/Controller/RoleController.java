@@ -17,19 +17,10 @@ public class RoleController {
         this.roleService = roleService;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<RoleResponse> getRoleById(@PathVariable Long id
             , @Valid @RequestBody RoleUpdateRequest request) {
         Role role = roleService.getRoleById(id);
-        
-        if (request.getRoleName() != null) {
-            role.setRoleName(request.getRoleName());
-        }
-
-        if (request.getDescription() != null) {
-            role.setDescription(request.getDescription());
-        }
-
 
         RoleResponse response = new RoleResponse(
                 role.getId(),

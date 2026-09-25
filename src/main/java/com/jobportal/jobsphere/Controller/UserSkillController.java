@@ -1,11 +1,12 @@
 package com.jobportal.jobsphere.Controller;
 
+import com.jobportal.jobsphere.dto.userskill.UserSkillResponse;
+import com.jobportal.jobsphere.entity.UserSkill;
 import com.jobportal.jobsphere.service.UserSkillService;
+import jakarta.validation.Valid;
+import org.springframework.boot.actuate.web.exchanges.HttpExchange;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -15,6 +16,19 @@ public class UserSkillController {
 
     public UserSkillController(UserSkillService userSkillService) {
         this.userSkillService = userSkillService;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserSkillResponse> getUserSkillById(@PathVariable Long id,
+    @Valid @RequestBody UserSkillUpdateRequest request) {
+        UserSkill userSkill = userSkillService.getUserSkillById(id);
+
+        UserSkillResponse response = new UserSkillResponse(
+                userSkill.getId(),
+                userSkill.getUser(),
+                userSkill.getYearsOfExperience()
+        );
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/delete/{id}")
