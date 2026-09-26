@@ -1,10 +1,8 @@
 package com.jobportal.jobsphere.Controller;
 
 import com.jobportal.jobsphere.dto.user.UserResponse;
-import com.jobportal.jobsphere.dto.user.UserUpdateRequest;
 import com.jobportal.jobsphere.entity.User;
 import com.jobportal.jobsphere.service.UserService;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,15 +17,14 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> getUserById(@PathVariable Long id
-            , @Valid @RequestBody UserUpdateRequest request) {
+    public ResponseEntity<UserResponse> getUserById(@PathVariable Long id){
         User user = userService.getUserById(id);
         UserResponse response = new UserResponse(
                 user.getId(),
                 user.getFullName(),
                 user.getEmail(),
                 user.getPhone(),
-                user.getRole()
+                user.getRole().getRoleName()
         );
         return ResponseEntity.ok(response);
     }

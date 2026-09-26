@@ -3,8 +3,6 @@ package com.jobportal.jobsphere.Controller;
 import com.jobportal.jobsphere.dto.userskill.UserSkillResponse;
 import com.jobportal.jobsphere.entity.UserSkill;
 import com.jobportal.jobsphere.service.UserSkillService;
-import jakarta.validation.Valid;
-import org.springframework.boot.actuate.web.exchanges.HttpExchange;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +17,13 @@ public class UserSkillController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserSkillResponse> getUserSkillById(@PathVariable Long id,
-    @Valid @RequestBody UserSkillUpdateRequest request) {
-        UserSkill userSkill = userSkillService.getUserSkillById(id);
+    public ResponseEntity<UserSkillResponse> getUserSkillById(@PathVariable Long userId,Long skillId) {
+        UserSkill userSkill = userSkillService.getUserSkillById(userId,skillId);
 
         UserSkillResponse response = new UserSkillResponse(
-                userSkill.getId(),
-                userSkill.getUser(),
+                userSkill.getUser().getId(),
+                userSkill.getSkill().getId(),
+                userSkill.getProficiencyLevel(),
                 userSkill.getYearsOfExperience()
         );
         return ResponseEntity.ok(response);

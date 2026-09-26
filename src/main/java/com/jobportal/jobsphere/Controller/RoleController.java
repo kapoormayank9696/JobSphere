@@ -1,10 +1,8 @@
 package com.jobportal.jobsphere.Controller;
 
 import com.jobportal.jobsphere.dto.role.RoleResponse;
-import com.jobportal.jobsphere.dto.role.RoleUpdateRequest;
 import com.jobportal.jobsphere.entity.Role;
 import com.jobportal.jobsphere.service.RoleService;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +16,7 @@ public class RoleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RoleResponse> getRoleById(@PathVariable Long id
-            , @Valid @RequestBody RoleUpdateRequest request) {
+    public ResponseEntity<RoleResponse> getRoleById(@PathVariable Long id) {
         Role role = roleService.getRoleById(id);
 
         RoleResponse response = new RoleResponse(
