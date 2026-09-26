@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class UserSkillRequest {
+public class UserSkillUpdateRequest {
 
     private Long skillId;
 

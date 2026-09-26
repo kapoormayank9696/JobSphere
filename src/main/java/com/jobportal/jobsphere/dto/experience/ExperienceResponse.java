@@ -2,8 +2,12 @@ package com.jobportal.jobsphere.dto.experience;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 
 public class ExperienceResponse {
