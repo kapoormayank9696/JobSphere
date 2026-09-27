@@ -1,8 +1,10 @@
 package com.jobportal.jobsphere.Controller;
 
+import com.jobportal.jobsphere.dto.company.CompanyCreateRequest;
 import com.jobportal.jobsphere.dto.company.CompanyResponse;
 import com.jobportal.jobsphere.entity.Company;
 import com.jobportal.jobsphere.service.CompanyService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -16,6 +18,30 @@ public class CompanyController {
 
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
+    }
+
+    @PostMapping
+    public ResponseEntity<CompanyResponse> saveCompany(
+            @Valid @RequestBody CompanyCreateRequest request) {
+        Company company = companyService.saveCompany(request);
+        CompanyResponse response = new CompanyResponse(
+                company.getId(),
+                company.getCompanyName(),
+                company.getDescription(),
+                company.getIndustry(),
+                company.getWebsite(),
+                company.getEmail(),
+                company.getPhone(),
+                company.getLocation(),
+                company.getAddress(),
+                company.getCity(),
+                company.getState(),
+                company.getCountry(),
+                company.getPostalCode(),
+                company.getCompanySize(),
+                company.getFoundedYear()
+        );
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping

@@ -1,11 +1,12 @@
 package com.jobportal.jobsphere.Controller;
 
+import com.jobportal.jobsphere.dto.experience.ExperienceCreateRequest;
 import com.jobportal.jobsphere.dto.experience.ExperienceResponse;
 import com.jobportal.jobsphere.entity.Experience;
 import com.jobportal.jobsphere.service.ExperienceService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,25 @@ public class ExperienceController {
 
     public ExperienceController(ExperienceService experienceService) {
         this.experienceService = experienceService;
+    }
+
+    @PostMapping
+    public ResponseEntity<ExperienceResponse> saveExperience(
+            @Valid @RequestBody ExperienceCreateRequest request) {
+        Experience experience = experienceService.saveExperience(request);
+        ExperienceResponse response = new ExperienceResponse(
+                experience.getId(),
+                experience.getUser().getId(),
+                experience.getCompanyName(),
+                experience.getJobTitle(),
+                experience.getEmployeeType(),
+                experience.getLocation(),
+                experience.getStartDate().getDayOfYear(),
+                experience.getEndDate().getDayOfYear(),
+                experience.getCurrentlyWorking(),
+                experience.getDescription()
+        );
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping()

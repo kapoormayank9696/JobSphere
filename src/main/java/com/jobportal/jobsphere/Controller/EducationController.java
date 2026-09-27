@@ -1,11 +1,12 @@
 package com.jobportal.jobsphere.Controller;
 
+import com.jobportal.jobsphere.dto.education.EducationCreateRequest;
 import com.jobportal.jobsphere.dto.education.EducationResponse;
 import com.jobportal.jobsphere.entity.Education;
 import com.jobportal.jobsphere.service.EducationService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,23 @@ public class EducationController {
 
     public EducationController(EducationService educationService) {
         this.educationService = educationService;
+    }
+
+    @PostMapping
+    public ResponseEntity<EducationResponse> saveEducation(
+            @Valid @RequestBody EducationCreateRequest request) {
+        Education education = educationService.saveEducation(request);
+        EducationResponse response = new EducationResponse(
+                education.getId(),
+                education.getUser().getId(),
+                education.getInstituteName(),
+                education.getDegree(),
+                education.getFieldOfStudy(),
+                education.getStartYear(),
+                education.getEndYear(),
+                education.getPercentage()
+        );
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping()

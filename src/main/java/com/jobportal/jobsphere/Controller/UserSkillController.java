@@ -1,8 +1,10 @@
 package com.jobportal.jobsphere.Controller;
 
+import com.jobportal.jobsphere.dto.userskill.UserSkillCreateRequest;
 import com.jobportal.jobsphere.dto.userskill.UserSkillResponse;
 import com.jobportal.jobsphere.entity.UserSkill;
 import com.jobportal.jobsphere.service.UserSkillService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -16,6 +18,19 @@ public class UserSkillController {
 
     public UserSkillController(UserSkillService userSkillService) {
         this.userSkillService = userSkillService;
+    }
+
+    @PostMapping
+    public ResponseEntity<UserSkillResponse> saveUserSkill(
+            @Valid @RequestBody UserSkillCreateRequest request) {
+        UserSkill userSkill = userSkillService.saveUserSkill(request);
+        UserSkillResponse response = new UserSkillResponse(
+                userSkill.getUser().getId(),
+                userSkill.getSkill().getId(),
+                userSkill.getProficiencyLevel(),
+                userSkill.getYearsOfExperience()
+        );
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping()
