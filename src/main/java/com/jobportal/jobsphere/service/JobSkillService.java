@@ -12,5 +12,5 @@ public interface JobSkillService {
 
     JobSkill getJobSkillById(Long jobId, Long skillId);
 
-    void deleteJobSkill(Long jobId, Long skillId);
+    void deleteById(Long jobId, Long skillId);
 }

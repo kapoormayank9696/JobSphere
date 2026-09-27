@@ -6,6 +6,9 @@ import com.jobportal.jobsphere.service.ExperienceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("api/experience")
 
@@ -14,6 +17,27 @@ public class ExperienceController {
 
     public ExperienceController(ExperienceService experienceService) {
         this.experienceService = experienceService;
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<ExperienceResponse>> getAllExperience() {
+        List<Experience> experiences = experienceService.getAllExperiences();
+        List<ExperienceResponse> responses = experiences.stream().map(
+                experience -> new ExperienceResponse(
+                        experience.getId(),
+                        experience.getUser().getId(),
+                        experience.getCompanyName(),
+                        experience.getJobTitle(),
+                        experience.getEmployeeType(),
+                        experience.getLocation(),
+                        experience.getStartDate().getDayOfYear(),
+                        experience.getEndDate().getDayOfYear(),
+                        experience.getCurrentlyWorking(),
+                        experience.getDescription()
+                ))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/{id}")

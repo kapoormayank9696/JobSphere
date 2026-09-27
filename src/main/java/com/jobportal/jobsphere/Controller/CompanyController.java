@@ -5,6 +5,8 @@ import com.jobportal.jobsphere.entity.Company;
 import com.jobportal.jobsphere.service.CompanyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/companys")
@@ -14,6 +16,31 @@ public class CompanyController {
 
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CompanyResponse>> getAllCompany() {
+        List<Company> companies = companyService.getAllCompanies();
+        List<CompanyResponse> responses = companies.stream()
+                .map(company -> new CompanyResponse(
+                        company.getId(),
+                        company.getCompanyName(),
+                        company.getDescription(),
+                        company.getIndustry(),
+                        company.getWebsite(),
+                        company.getEmail(),
+                        company.getPhone(),
+                        company.getLocation(),
+                        company.getAddress(),
+                        company.getCity(),
+                        company.getState(),
+                        company.getCountry(),
+                        company.getPostalCode(),
+                        company.getCompanySize(),
+                        company.getFoundedYear()
+                ))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/{id}")

@@ -6,6 +6,9 @@ import com.jobportal.jobsphere.service.EducationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/api/educations")
 
@@ -14,6 +17,25 @@ public class EducationController {
 
     public EducationController(EducationService educationService) {
         this.educationService = educationService;
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<EducationResponse>> getAllEducation() {
+        List<Education> educations = educationService.getAllEducations();
+        List<EducationResponse> responses = educations.stream().map(
+                education -> new EducationResponse(
+                        education.getId(),
+                        education.getUser().getId(),
+                        education.getInstituteName(),
+                        education.getDegree(),
+                        education.getFieldOfStudy(),
+                        education.getStartYear(),
+                        education.getEndYear(),
+                        education.getPercentage()
+                ))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/{id}")

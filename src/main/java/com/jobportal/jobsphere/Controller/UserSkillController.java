@@ -5,6 +5,8 @@ import com.jobportal.jobsphere.entity.UserSkill;
 import com.jobportal.jobsphere.service.UserSkillService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -14,6 +16,20 @@ public class UserSkillController {
 
     public UserSkillController(UserSkillService userSkillService) {
         this.userSkillService = userSkillService;
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<UserSkillResponse>> getAllUserSkills() {
+        List<UserSkill> userSkills = userSkillService.getAllUserSkills();
+        List<UserSkillResponse> responses = userSkills.stream().map(
+                userSkill -> new UserSkillResponse(
+                        userSkill.getUser().getId(),
+                        userSkill.getSkill().getId(),
+                        userSkill.getProficiencyLevel(),
+                        userSkill.getYearsOfExperience()
+                )).
+                collect(Collectors.toList());
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/{id}")

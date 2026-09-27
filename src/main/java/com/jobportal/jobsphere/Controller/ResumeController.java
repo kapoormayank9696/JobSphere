@@ -5,6 +5,8 @@ import com.jobportal.jobsphere.entity.Resume;
 import com.jobportal.jobsphere.service.ResumeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/resumes")
@@ -14,6 +16,22 @@ public class ResumeController {
 
     public ResumeController(ResumeService resumeService) {
         this.resumeService = resumeService;
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<ResumeResponse>> getAllResume() {
+        List<Resume> resumes = resumeService.getAllResumes();
+        List<ResumeResponse> responses = resumes.stream().map(
+                resume -> new ResumeResponse(
+                        resume.getId(),
+                        resume.getUser().getId(),
+                        resume.getResumeName(),
+                        resume.getFileName(),
+                        resume.getFileUrl(),
+                        resume.getCreatedAt().getDayOfMonth()
+                ))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/{id}")

@@ -5,6 +5,9 @@ import com.jobportal.jobsphere.entity.User;
 import com.jobportal.jobsphere.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("api/users")
@@ -14,6 +17,21 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        List <User> users = userService.getAllUsers();
+        List<UserResponse> responses = users.stream().map(
+                user -> new UserResponse(
+                        user.getId(),
+                        user.getFullName(),
+                        user.getEmail(),
+                        user.getPhone(),
+                        user.getRole().getRoleName()
+                ))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/{id}")
