@@ -1,11 +1,14 @@
 package com.jobportal.jobsphere.service;
 
+import com.jobportal.jobsphere.dto.company.CompanyCreateRequest;
 import com.jobportal.jobsphere.entity.Company;
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 public interface CompanyService {
 
-    Company saveCompany(Company company);
+    Company saveCompany(@Valid CompanyCreateRequest company);
 
     List<Company> getAllCompanies();
 

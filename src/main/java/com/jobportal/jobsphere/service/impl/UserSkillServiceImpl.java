@@ -1,5 +1,6 @@
 package com.jobportal.jobsphere.service.impl;
 
+import com.jobportal.jobsphere.dto.userskill.UserSkillCreateRequest;
 import com.jobportal.jobsphere.exception.ResourceNotFoundException;
 import com.jobportal.jobsphere.entity.UserSkill;
 import com.jobportal.jobsphere.entity.UserSkillId;
@@ -21,7 +22,7 @@ public class UserSkillServiceImpl implements UserSkillService {
     }
 
     @Override
-    public UserSkill saveUserSkill(UserSkill userSkill) {
+    public UserSkill saveUserSkill(UserSkillCreateRequest userSkill) {
         return userSkillRepository.save(userSkill);
     }
 

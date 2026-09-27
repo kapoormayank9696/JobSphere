@@ -1,9 +1,11 @@
 package com.jobportal.jobsphere.service.impl;
 
+import com.jobportal.jobsphere.dto.company.CompanyCreateRequest;
 import com.jobportal.jobsphere.exception.ResourceNotFoundException;
 import com.jobportal.jobsphere.entity.Company;
 import com.jobportal.jobsphere.repository.CompanyRepository;
 import com.jobportal.jobsphere.service.CompanyService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Company saveCompany(Company company) {
+    public Company saveCompany(@Valid CompanyCreateRequest company) {
         return companyRepository.save(company);
     }
 

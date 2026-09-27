@@ -1,9 +1,11 @@
 package com.jobportal.jobsphere.service.impl;
 
+import com.jobportal.jobsphere.dto.experience.ExperienceCreateRequest;
 import com.jobportal.jobsphere.exception.ResourceNotFoundException;
 import com.jobportal.jobsphere.entity.Experience;
 import com.jobportal.jobsphere.repository.ExperienceRepository;
 import com.jobportal.jobsphere.service.ExperienceService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class ExperienceServiceImpl implements ExperienceService {
     }
 
     @Override
-    public Experience saveExperience(Experience experience) {
+    public Experience saveExperience(@Valid ExperienceCreateRequest experience) {
         return experienceRepository.save(experience);
     }
 

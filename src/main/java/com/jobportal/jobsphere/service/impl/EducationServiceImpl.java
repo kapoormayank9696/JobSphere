@@ -1,9 +1,11 @@
 package com.jobportal.jobsphere.service.impl;
 
+import com.jobportal.jobsphere.dto.education.EducationCreateRequest;
 import com.jobportal.jobsphere.exception.ResourceNotFoundException;
 import com.jobportal.jobsphere.entity.Education;
 import com.jobportal.jobsphere.repository.EducationRepository;
 import com.jobportal.jobsphere.service.EducationService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class EducationServiceImpl implements EducationService {
     }
 
     @Override
-    public Education saveEducation(Education education) {
+    public Education saveEducation(@Valid EducationCreateRequest education) {
         return educationRepository.save(education);
     }
 
