@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/roles")
 public class RoleController {
+
     private final RoleService roleService;
 
     public RoleController(RoleService roleService) {

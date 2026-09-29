@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("api/skills")
 public class SkillController {
+
     private final SkillService skillService;
 
     public SkillController(SkillService skillService) {
