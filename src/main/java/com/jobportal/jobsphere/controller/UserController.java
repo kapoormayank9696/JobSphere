@@ -1,4 +1,4 @@
-package com.jobportal.jobsphere.Controller;
+package com.jobportal.jobsphere.controller;
 
 import com.jobportal.jobsphere.dto.user.UserResponse;
 import com.jobportal.jobsphere.entity.User;

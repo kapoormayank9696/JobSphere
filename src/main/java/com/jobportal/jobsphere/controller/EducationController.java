@@ -1,4 +1,4 @@
-package com.jobportal.jobsphere.Controller;
+package com.jobportal.jobsphere.controller;
 
 import com.jobportal.jobsphere.dto.education.EducationCreateRequest;
 import com.jobportal.jobsphere.dto.education.EducationResponse;

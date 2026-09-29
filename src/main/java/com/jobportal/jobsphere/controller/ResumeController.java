@@ -1,4 +1,4 @@
-package com.jobportal.jobsphere.Controller;
+package com.jobportal.jobsphere.controller;
 
 import com.jobportal.jobsphere.dto.resume.ResumeResponse;
 import com.jobportal.jobsphere.entity.Resume;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @RequestMapping("api/resumes")
 
 public class ResumeController {
-    
+
     private final ResumeService resumeService;
 
     public ResumeController(ResumeService resumeService) {
