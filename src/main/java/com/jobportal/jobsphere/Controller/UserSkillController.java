@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/users")
 
 public class UserSkillController {
+
     private final UserSkillService userSkillService;
 
     public UserSkillController(UserSkillService userSkillService) {
