@@ -11,8 +11,7 @@ public interface JobService {
 
     List<Job> getAllJobs();
 
-    JobSkill getJobSkillById(Long id);
+    Job getJobById(Long id);
 
     void deleteById(Long id);
-    
 }

@@ -39,7 +39,7 @@ public class JobSkillServiceImpl implements JobSkillService {
     }
 
     @Override
-    public void deleteJobSkill(Long jobId, Long skillId) {
+    public void deleteById(Long jobId, Long skillId) {
         JobSkillId id = new JobSkillId(jobId, skillId);
         jobSkillRepository.deleteById(id);
     }

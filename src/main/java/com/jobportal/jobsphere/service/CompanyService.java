@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CompanyService {
 
-    Company saveCompany(@Valid CompanyCreateRequest company);
+    Company saveCompany(CompanyCreateRequest company);
 
     List<Company> getAllCompanies();
 

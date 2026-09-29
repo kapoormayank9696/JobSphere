@@ -11,10 +11,8 @@ import java.util.List;
 @Service
 public class JobServiceImpl implements JobService {
 
-    // Data Members with final Keyword
     private final JobRepository jobRepository;
 
-    // Parameterized Constructor
     public JobServiceImpl(JobRepository jobRepository) {
         this.jobRepository = jobRepository;
     }
@@ -31,9 +29,13 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Job getJobById(Long id) {
-        return jobRepository.findById(id).
-                orElseThrow(() -> new
-                        ResourceNotFoundException("Job not found with id: "+id));
+
+        return jobRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Job not found with id: " + id
+                        )
+                );
     }
 
     @Override

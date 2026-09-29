@@ -22,7 +22,18 @@ public class UserSkillServiceImpl implements UserSkillService {
     }
 
     @Override
-    public UserSkill saveUserSkill(UserSkillCreateRequest userSkill) {
+    public UserSkill saveUserSkill(UserSkillCreateRequest request) {
+
+        UserSkillId id = new UserSkillId(
+                request.getUserId(),
+                request.getSkillId()
+        );
+
+        UserSkill userSkill = new UserSkill();
+        userSkill.setId(id);
+        userSkill.setProficiencyLevel(request.getProficiencyLevel());
+        userSkill.setYearsOfExperience(request.getYearsOfExperience());
+
         return userSkillRepository.save(userSkill);
     }
 
