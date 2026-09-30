@@ -24,8 +24,8 @@ public class EducationServiceImpl implements EducationService {
     @Override
     public Education saveEducation(EducationCreateRequest request) {
         Education education = new Education();
-        
-        education.setUser(user);
+
+        education.setUser(request.getUserId());
         education.setDegree(request.getDegree());
         education.setFieldOfStudy(request.getFieldOfStudy());
         education.setInstituteName(request.getInstituteName());
